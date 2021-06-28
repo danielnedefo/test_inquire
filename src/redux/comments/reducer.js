@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import commentsActions from './actions'
 const comments = createReducer([],{
-   [commentsActions.createCommentSuccess]:(_,{payload}) =>payload,
+   [commentsActions.createCommentSuccess]:(state,{payload}) =>[...state,payload],
    [commentsActions.getCommentsSuccess]:(state,{payload}) =>[...state,...payload.comments]
 })
 const error = createReducer(null,{

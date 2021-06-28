@@ -13,7 +13,8 @@ const getCommentsFromOnePost = (num) => async dispatch => {
 const createComment = (info) => async dispatch => {
     dispatch(commentsActions.createCommentRequest())
     try {
-      const { data } = await HttpService.post(endpoints.commentPost,info)
+      const { data } = await HttpService.post(endpoints.commentPost, info)
+      console.log(data)
       dispatch(commentsActions.createCommentSuccess(data))
     } catch (error) {
       dispatch(commentsActions.createCommentError(error))

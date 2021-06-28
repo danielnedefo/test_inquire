@@ -28,10 +28,11 @@ const deletePost = info => async dispatch => {
     dispatch(postActions.deletePostError(error))
   }
 }
-const updatePost = info => async dispatch => {
+const updatePost = (id,info) => async dispatch => {
   dispatch(postActions.updatePostRequest())
   try {
-    const { data } = await HttpService.put(endpoints.updatePost(info))
+    const { data } = await HttpService.put(endpoints.updatePost(id), info)
+    console.log(data)
     dispatch(postActions.updatePostSuccess(data))
   } catch (error) {
     dispatch(postActions.updatePostError(error))

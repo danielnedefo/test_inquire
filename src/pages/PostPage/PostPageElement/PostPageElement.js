@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   }));
-const PostPageElement = ({post,deletePost,updatePost}) =>{
+const PostPageElement = ({post,deletePost,updatePost,toggleModalForComments}) =>{
  const comments = useSelector(commentSelector,shallowEqual)
  const actualForThisPost = comments.filter(({postId}) => postId === post.id)
  const trueComments = new Map()
@@ -43,7 +43,6 @@ const render = () =>{
     return <p>{comments}</p>
   }
 }
-console.log(trueComments)
  const dispatch = useDispatch()
     const [open, setOpen] = useState(false);
     const classes = useStyles();
@@ -71,7 +70,7 @@ console.log(trueComments)
             Delete
       </Button>
       <Button
-        onClick={updatePost}
+        onClick={()=>updatePost(post.id)}
         variant="contained"
         color="default"
         className={classes.button}
@@ -79,7 +78,9 @@ console.log(trueComments)
       >
         Update
       </Button>
-      <Button variant="contained" color="primary">
+            <Button
+              onClick={()=>toggleModalForComments(post.id)}
+              variant="contained" color="primary">
         Left Comment
       </Button>
             </TableCell>
