@@ -1,9 +1,10 @@
 import { useState } from "react";
 const useForm = (initialState,onSubmit = () => {}) => {
   const [data, setdata] = useState(initialState)
-  const handleChange = (target) => {
+  const handleChange = ({target}) => {
     const {name,value} = target
     setdata({
+      ...data,
       [name]:value
     })
   }

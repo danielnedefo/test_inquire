@@ -14,5 +14,15 @@ const posts = createReducer([], {
     return newState
   }
 })
+const error = createReducer(null,{
+  [postActions.getPostsError]: (_, __) => true,
+  [postActions.createPostError]:  (_, __) => true,
+  [postActions.deletePostSuccess]:  (_, __) => true,
+  [postActions.updatePostSuccess]:  (_, __) => true,
+})
 
-export default posts
+const rootReducer = combineReducers({
+  posts,
+  error
+}) 
+export default rootReducer 
